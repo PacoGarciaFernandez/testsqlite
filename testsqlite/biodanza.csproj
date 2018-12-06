@@ -1,0 +1,467 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{A6358BF9-AD7B-4E2F-A163-C885E8315955}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>biodanza</RootNamespace>
+    <AssemblyName>biodanza</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <TargetFrameworkProfile />
+    <PublishUrl>c:\biodanza\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>1</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <PublishWizardCompleted>true</PublishWizardCompleted>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>TRACE;DEBUG</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <UseVSHostingProcess>true</UseVSHostingProcess>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>if_hands-heart_2903219.ico</ApplicationIcon>
+  </PropertyGroup>
+  <PropertyGroup />
+  <PropertyGroup>
+    <ManifestCertificateThumbprint>BDC1DE47D424FD7D83356EC8572D7975FE98A733</ManifestCertificateThumbprint>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestKeyFile>biodanza_TemporaryKey.pfx</ManifestKeyFile>
+  </PropertyGroup>
+  <PropertyGroup>
+    <GenerateManifests>true</GenerateManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignManifests>true</SignManifests>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="AxInterop.WMPLib, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\AxInterop.WMPLib.dll</HintPath>
+      <EmbedInteropTypes>False</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="Interop.iTunesLib">
+      <HintPath>Dlls\Interop.iTunesLib.dll</HintPath>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="Interop.Shell32, Version=1.0.0.0, Culture=neutral">
+      <SpecificVersion>False</SpecificVersion>
+      <EmbedInteropTypes>False</EmbedInteropTypes>
+      <HintPath>bin\Debug\Interop.Shell32.dll</HintPath>
+    </Reference>
+    <Reference Include="Interop.WMPLib, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <EmbedInteropTypes>False</EmbedInteropTypes>
+      <HintPath>bin\Debug\Interop.WMPLib.dll</HintPath>
+    </Reference>
+    <Reference Include="MediaSlider, Version=1.2.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\MediaSlider.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.SharePoint.Client, Version=16.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL" />
+    <Reference Include="NAudio, Version=1.8.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\NAudio.dll</HintPath>
+    </Reference>
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.SQLite">
+      <HintPath>SQLite\System.Data.SQLite.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Speech" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="taglib-sharp, Version=2.1.0.0, Culture=neutral, PublicKeyToken=db62eba44689b5b0, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\taglib-sharp.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="BioBase\ColumnasGrid.cs" />
+    <Compile Include="AccesoDatos\DB.cs" />
+    <Compile Include="FileAssociations.cs" />
+    <Compile Include="Form1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form1.Designer.cs">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormRecord.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormRecord.Designer.cs">
+      <DependentUpon>FormRecord.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormQuery.cs">
+      <SubType>Form</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="FormQuery.Designer.cs">
+      <DependentUpon>FormQuery.cs</DependentUpon>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="FrmCountDown.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmCountDown.Designer.cs">
+      <DependentUpon>FrmCountDown.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmSortItems.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmSortItems.Designer.cs">
+      <DependentUpon>FrmSortItems.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmTreeClases.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmTreeClases.Designer.cs">
+      <DependentUpon>FrmTreeClases.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmEditClassSong.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmEditClassSong.Designer.cs">
+      <DependentUpon>FrmEditClassSong.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ITunesParser\ITunesLibrary.cs" />
+    <Compile Include="ITunesParser\List.cs" />
+    <Compile Include="ITunesParser\PlayList.cs" />
+    <Compile Include="AccesoDatos\RepetidosMng.cs" />
+    <Compile Include="AccesoDatos\ItemMng.cs" />
+    <Compile Include="AccesoDatos\ListaItemsMng.cs" />
+    <Compile Include="AccesoDatos\MusicaMng.cs" />
+    <Compile Include="AccesoDatos\CarpetaListaMng.cs" />
+    <Compile Include="BioBase\Repetidos.cs" />
+    <Compile Include="BioBase\lista_items.cs" />
+    <Compile Include="BioBase\CarpetaLista.cs" />
+    <Compile Include="ClaseForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ClaseForm.Designer.cs">
+      <DependentUpon>ClaseForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="LoopbackRecorder.cs" />
+    <Compile Include="MusicManager.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MusicManager.Designer.cs">
+      <DependentUpon>MusicManager.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MP3File.cs" />
+    <Compile Include="BioBase\Item.cs" />
+    <Compile Include="MusicaFrm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MusicaFrm.Designer.cs">
+      <DependentUpon>MusicaFrm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MyLabel.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="MyLabel.Designer.cs">
+      <DependentUpon>MyLabel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="NewQuery.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="NewQuery.Designer.cs">
+      <DependentUpon>NewQuery.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Player.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Player.designer.cs">
+      <DependentUpon>Player.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PlayListRecord.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="SelectClase.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SelectClase.Designer.cs">
+      <DependentUpon>SelectClase.cs</DependentUpon>
+    </Compile>
+    <Compile Include="setduration.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="setduration.Designer.cs">
+      <DependentUpon>setduration.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ShellID3TagReader.cs" />
+    <Compile Include="ITunesParser\TimeConvert.cs" />
+    <Compile Include="ITunesParser\Track.cs" />
+    <Compile Include="TextEditor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TextEditor.Designer.cs">
+      <DependentUpon>TextEditor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Translator.cs" />
+    <Compile Include="visorvideo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="visorvideo.Designer.cs">
+      <DependentUpon>visorvideo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="WaveAudio.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="WaveAudio.Designer.cs">
+      <DependentUpon>WaveAudio.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ITunesParser\XElementParser.cs" />
+    <Compile Include="XML\Propiedad.cs" />
+    <Compile Include="XML\Songs.cs" />
+    <Compile Include="XML\dict.cs" />
+    <EmbeddedResource Include="Form1.resx">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormRecord.resx">
+      <DependentUpon>FormRecord.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ClaseForm.resx">
+      <DependentUpon>ClaseForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmCountDown.resx">
+      <DependentUpon>FrmCountDown.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmSortItems.resx">
+      <DependentUpon>FrmSortItems.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmTreeClases.resx">
+      <DependentUpon>FrmTreeClases.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmEditClassSong.resx">
+      <DependentUpon>FrmEditClassSong.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MusicaFrm.resx">
+      <DependentUpon>MusicaFrm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MusicManager.resx">
+      <DependentUpon>MusicManager.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="NewQuery.resx">
+      <DependentUpon>NewQuery.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Player.resx">
+      <DependentUpon>Player.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SelectClase.resx">
+      <DependentUpon>SelectClase.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="setduration.resx">
+      <DependentUpon>setduration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TextEditor.resx">
+      <DependentUpon>TextEditor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="visorvideo.resx">
+      <DependentUpon>visorvideo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WaveAudio.resx">
+      <DependentUpon>WaveAudio.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="biodanza_TemporaryKey.pfx" />
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <COMReference Include="AxWMPLib">
+      <Guid>{6BF52A50-394A-11D3-B153-00C04F79FAA6}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>aximp</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>False</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="WMPLib">
+      <Guid>{6BF52A50-394A-11D3-B153-00C04F79FAA6}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>tlbimp</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Res\Countdown2.mp4" />
+    <None Include="Res\Countdown2_00001%281%29.mp4" />
+    <None Include="Res\if_replay_326591.png" />
+    <None Include="Res\if_icon-stop_211931.png" />
+    <None Include="Res\if_icon-pause_211871.png" />
+    <None Include="Res\if_1_5_97796.png" />
+    <None Include="Res\if_play-arrow_326577%281%29.png" />
+    <None Include="Res\if_Record Button_38829.png" />
+    <None Include="Res\if_icon-111-search_314689.png" />
+    <None Include="Res\Image9.png" />
+    <None Include="Res\Image8.png" />
+    <None Include="Res\Image7.png" />
+    <None Include="Res\Image5.png" />
+    <None Include="Res\Image4.png" />
+    <None Include="Res\Image3.png" />
+    <None Include="Res\Image2.png" />
+    <None Include="Res\if_067_Pause_183196.png" />
+    <None Include="Res\repetiron.png" />
+    <None Include="Res\repetiroff.png" />
+    <None Include="Res\if_padlock_open_10206.png" />
+    <None Include="Res\if_padlock_closed_10205.png" />
+    <None Include="Res\if_padlock-open_49856.png" />
+    <None Include="Res\if_padlock-closed_49855.png" />
+    <None Include="Res\if_controls_stop_103461.png" />
+    <None Include="Res\if_krec_record_1778.png" />
+    <None Include="Resources\if_067_Pause_183196.png" />
+    <Content Include="if_hands-heart_2903219.ico" />
+    <Content Include="Resources\809631-24.png" />
+    <None Include="Resources\captionbtns.png" />
+    <None Include="Resources\captionbtnsmax.png" />
+    <Content Include="Resources\if_20_330402.png" />
+    <None Include="Resources\if_43_111102.png" />
+    <Content Include="Resources\if_9_330409.png" />
+    <Content Include="Resources\if_Community_131614.png" />
+    <None Include="Resources\if_content-paste_326599.png" />
+    <None Include="Resources\if_content-copy_326595.png" />
+    <None Include="Resources\if_content-cut_326596.png" />
+    <Content Include="Resources\if_controls_stop_103461.png" />
+    <None Include="Resources\if_dancer_1_811487.png" />
+    <Content Include="Resources\if_dancer_1_811544.png" />
+    <None Include="Resources\if_Dance_instructor_2_753954.png" />
+    <None Include="Resources\if_dancer_3_811449.png" />
+    <Content Include="Resources\if_Delete_105231.png" />
+    <None Include="Resources\if_document_text_103509.png" />
+    <Content Include="Resources\if_fast-forward_326523%281%29.png" />
+    <Content Include="Resources\if_fast-rewind_326528%281%29.png" />
+    <Content Include="Resources\if_filter_173013.png" />
+    <None Include="Resources\if_hands-heart_2903219.png" />
+    <None Include="Resources\if_hands-heart_2903219%281%29.png" />
+    <None Include="Resources\if_folder-open_173017.png" />
+    <None Include="Resources\if_folder-close_173016.png" />
+    <Content Include="Resources\if_icon-81-document-add_314764.png" />
+    <None Include="Resources\if_icon-ios7-redo_211811.png" />
+    <None Include="Resources\if_icon-ios7-undo_211838.png" />
+    <None Include="Resources\if_ic_open_in_new_48px_352573.png" />
+    <Content Include="Resources\if_krec_record_1778.png" />
+    <Content Include="Resources\if_music_172510.png" />
+    <None Include="Resources\if_new-24_103173.png" />
+    <None Include="Resources\if_new10_216291.png" />
+    <Content Include="Resources\if_padlock-closed_49855.png" />
+    <Content Include="Resources\if_padlock-open_49856.png" />
+    <Content Include="Resources\if_padlock_closed_10205.png" />
+    <Content Include="Resources\if_padlock_open_10206.png" />
+    <Content Include="Resources\if_play-arrow_326577.png" />
+    <None Include="Resources\if_print_326675.png" />
+    <None Include="Resources\if_save_1608823.png" />
+    <Content Include="Resources\Image2.png" />
+    <Content Include="Resources\Image3.png" />
+    <Content Include="Resources\Image4.png" />
+    <Content Include="Resources\Image5.png" />
+    <Content Include="Resources\Image7.png" />
+    <Content Include="Resources\Image8.png" />
+    <Content Include="Resources\Image9.png" />
+    <Content Include="Resources\l_indent_pos_lower.png" />
+    <Content Include="Resources\l_indet_pos_upper.png" />
+    <Content Include="Resources\repetiroff.png" />
+    <Content Include="Resources\repetiron.png" />
+    <None Include="Resources\rnndtextbox.png" />
+    <Content Include="Resources\r_indent_pos.png" />
+    <Content Include="Resources\tab_pos.png" />
+    <Content Include="Res\809631-24.png" />
+    <None Include="Res\if_fast-forward_326523%281%29.png" />
+    <None Include="Res\if_fast-rewind_326528%281%29.png" />
+    <None Include="Res\if_play-arrow_326577.png" />
+    <None Include="Res\if_Delete_105231.png" />
+    <None Include="Res\if_20_330402.png" />
+    <None Include="Res\if_9_330409.png" />
+    <None Include="Res\if_filter_173013.png" />
+    <None Include="Res\if_dancer_1_811544.png" />
+    <None Include="Res\if_icon-81-document-add_314764.png" />
+    <None Include="Res\if_Community_131614.png" />
+    <None Include="Res\if_music_172510.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.5.2">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.5.2 %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
