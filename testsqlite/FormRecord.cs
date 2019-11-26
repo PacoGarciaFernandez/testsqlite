@@ -7,7 +7,6 @@ namespace biodanza
 {
     public partial class FormRecord : Form
     {
-        bool isRecording = false;
         Stopwatch stopWatch = null;
         LoopbackRecorder recorder;
         string tmpfilename;
@@ -25,7 +24,7 @@ namespace biodanza
         private void btnRecord_Click(object sender, EventArgs e)
         {
 
-            isRecording = true;
+            
             for (int i = 3; i>0; i--)
             {
                 txtTime.Text = "-" + i.ToString();
@@ -56,8 +55,7 @@ namespace biodanza
 
         private void btnStop_Click(object sender, EventArgs e)
         {
-            isRecording = false;
-
+       
             stopWatch.Stop();
             btnStop.Visible = false;
             btnRecord.Visible = true;

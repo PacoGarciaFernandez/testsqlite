@@ -13,8 +13,6 @@ namespace biodanza
 {
     public partial class TextEditor : Form
     {
-        private Font verdana10Font;
-        private StreamReader reader;
         private System.Drawing.Printing.PrintDocument docToPrint =    new System.Drawing.Printing.PrintDocument();
         private string stringToPrint;
 

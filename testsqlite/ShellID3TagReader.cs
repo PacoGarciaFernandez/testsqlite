@@ -1,4 +1,7 @@
 using System;
+using System.Diagnostics;
+using System.IO;
+using NAudio.Wave;
 using Shell32;
 
 
@@ -122,6 +125,30 @@ namespace ShellID3Reader
             //return mp3File instance
             return mp3File;
         }
+        public static void ConvertMp3ToWav(string _inPath_, string _outPath_)
+        {
+            using (Mp3FileReader mp3 = new Mp3FileReader(_inPath_))
+            {
+                using (WaveStream pcm = WaveFormatConversionStream.CreatePcmStream(mp3))
+                {
+                    WaveFileWriter.CreateWaveFile(_outPath_, pcm);
+                }
+            }
+        }
+        public static void ConvertWavToMp3(string _inPath_, string _outPath_)
+        {
+            Process process = new Process();
+            process.StartInfo.RedirectStandardOutput = true;
+            process.StartInfo.RedirectStandardError = true;
+            process.StartInfo.FileName = Path.GetDirectoryName(System.Diagnostics.Process.GetCurrentProcess().MainModule.FileName) +
+                                    @"\bin\ffmpeg.exe";
 
-	}
+            process.StartInfo.Arguments = @"-i .\sound1.wav -acodec libvorbis -f ogg abc.ogg";
+
+
+            process.StartInfo.UseShellExecute = false;
+            process.StartInfo.CreateNoWindow = true;
+            process.Start();
+        }
+    }
 }

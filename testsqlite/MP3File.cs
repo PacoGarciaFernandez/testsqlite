@@ -1,6 +1,9 @@
+
 using System;
 namespace ShellID3Reader {
-	public class MP3File {
+
+    public class MP3File {
+
 		private string fileName;
         private string fileFullPath;
 		private string artistName;
@@ -58,7 +61,14 @@ namespace ShellID3Reader {
                 fileFullPath = value;
             }
         }
-		public MP3File(){
+        public MP3File()
+        {
+        }
+
+        public MP3File(string fileName){
+            this.fileName = fileName;
 		}
-	}
+
+        
+    }
 }

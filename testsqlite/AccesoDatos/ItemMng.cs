@@ -56,37 +56,33 @@ namespace biodanza
             {
                 return 0;
             }
-            string tipoItem = "'Música', ";
+            string tipoItem = "Música";
             string Album    =  Sanitize(id3.Tag.Album) ;
             string Titulo   =  Sanitize(Path.GetFileName(fi.FullName)) ;
             string Artist   =  Sanitize(id3.Tag.FirstArtist) ;
             string duracion =  Sanitize(id3.Properties.Duration.ToString(@"mm\:ss")) ;
 
-            string genero   = "'', ";
+            string genero   = "";
             if (id3.Tag.Genres.Count() > 0)
             {
                 genero = Sanitize(id3.Tag.Genres[0]);
             }
-            string file = "'" + Sanitize(fi.DirectoryName) + "'";
+            string file = Sanitize(fi.DirectoryName);
 
             if (string.IsNullOrEmpty(Album))
             {
-                return 0 ;
+                Album = "Noname";
+                //return 0 ;
             }
             string idioma = "";
             bool tieneletra = !string.IsNullOrEmpty(id3.Tag.Lyrics);
             
-            string joincolumns = ", '" + Album + " " + Titulo + " " + Artist + " " + genero + "' ";
+            string joincolumns = Album + " " + Titulo + " " + Artist + " " + genero ;
             joincolumns = joincolumns.ToLower();
                         
-            Album = "'" + Album + "', ";
-            Titulo = "'" + Titulo + "', ";
-            Artist = "'" + Artist + "', ";
-            duracion = "'" + duracion + "', ";
-            genero = "'', ";
             if (id3.Tag.Genres.Count() > 0)
             {
-                genero = "'" + Sanitize(id3.Tag.Genres[0]) + "', ";
+                genero = Sanitize(id3.Tag.Genres[0]);
             }
 
             
@@ -97,16 +93,16 @@ namespace biodanza
             //file = "'" + Sanitize(fi.DirectoryName) + "'";
 
             string Query = "INSERT INTO " + tableName + " (Id, tipoitem, Album, Titulo, Autor, Duracion, genero, Localizacion, idioma, joincolumns, tieneletra)  values(" + NewId().ToString() + ", " + 
-                tipoItem + 
-                Album +
-                Titulo +
-                Artist +
-                duracion + 
-                genero +
-                file + 
-                idioma +
-                (tieneletra?"1":"0") +
-                joincolumns + ")";
+                "'"+tipoItem+"', " + 
+                "'"+Album   +"', " +
+                "'"+Titulo  +"', " +
+                "'"+Artist  +"', " +
+                "'"+duracion+"', " + 
+                "'"+genero  +"', " +
+                "'"+file    +"', " + 
+                "'"+idioma  +"', " +
+                (tieneletra?"1":"0") + ", "+
+                "'"+joincolumns + "')";
 
             SQLiteCommand cmd = new SQLiteCommand(Query, Program.m_dbConnection);
             cmd.ExecuteNonQuery();
@@ -182,8 +178,9 @@ namespace biodanza
             catch (Exception e)
             {
                 StringBuilder sb = new StringBuilder();
+                file = file.Replace("\'", "").Replace(",","");
                 sb.Append(file + Environment.NewLine);
-                File.AppendAllText(e.Message + "-" + Path.Combine(Directory.GetCurrentDirectory(), "log.txt"), sb.ToString());
+                File.AppendAllText(e.Message + "-" + Path.Combine(@"c:\", "log.txt"), sb.ToString());
                 sb.Clear();
             }
 

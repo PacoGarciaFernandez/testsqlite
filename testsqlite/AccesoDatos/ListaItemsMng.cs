@@ -38,11 +38,11 @@ namespace biodanza
                                        "B.GENERO          AS GENERO, " + 
                                        "B.IDIOMA          AS IDIOMA, " + 
                                        "B.LOCALIZACION    AS LOCALIZACION " + //   "B.TIENELETRA      AS TIENELETRA " +
-                " FROM " + this.tableName + " A LEFT JOIN ITEMS B ON A.ID_ITEM=B.ID ";
+                " FROM " + this.tableName + " A LEFT JOIN ITEMS B ON A.ID_ITEM=B.ID ORDER BY A.ORDEN";
            
             return base.GetData();
         }
-        
+                
         public int Nuevo(lista_items li)
         {
             if (ExisteID(li.id))

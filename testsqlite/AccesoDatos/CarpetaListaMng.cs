@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace biodanza
 {
-    class CarpetaListaMng: DB
+    public class CarpetaListaMng: DB
     {
         public Int32 idCarpetaLista = 0; 
 

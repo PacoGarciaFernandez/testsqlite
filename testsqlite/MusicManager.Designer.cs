@@ -30,12 +30,12 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MusicManager));
-            System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("Música", 0, 0);
-            System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("Proyectos");
+            System.Windows.Forms.TreeNode treeNode3 = new System.Windows.Forms.TreeNode("Música", 0, 0);
+            System.Windows.Forms.TreeNode treeNode4 = new System.Windows.Forms.TreeNode("Proyectos");
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
             this.contextMenuBiblioteca = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.añadirCanciónToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.contextCrearProyecto = new System.Windows.Forms.ContextMenuStrip(this.components);
@@ -86,7 +86,7 @@
             this.propiedadesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.gridMusica = new System.Windows.Forms.DataGridView();
-            this.gridItems = new System.Windows.Forms.DataGridView();
+            this.gridItemsClase = new System.Windows.Forms.DataGridView();
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
             this.pgBarImport = new System.Windows.Forms.ProgressBar();
@@ -128,7 +128,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.gridRepetidos)).BeginInit();
             this.contextMenuMusicas.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridMusica)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridItems)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridItemsClase)).BeginInit();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
             this.menuStrip2.SuspendLayout();
@@ -646,7 +646,7 @@
             // 
             this.splitContainer1.Panel2.Controls.Add(this.gridRepetidos);
             this.splitContainer1.Panel2.Controls.Add(this.gridMusica);
-            this.splitContainer1.Panel2.Controls.Add(this.gridItems);
+            this.splitContainer1.Panel2.Controls.Add(this.gridItemsClase);
             this.splitContainer1.Size = new System.Drawing.Size(1028, 595);
             this.splitContainer1.SplitterDistance = 199;
             this.splitContainer1.TabIndex = 1;
@@ -664,19 +664,19 @@
             this.tvListas.LabelEdit = true;
             this.tvListas.Location = new System.Drawing.Point(0, 0);
             this.tvListas.Name = "tvListas";
-            treeNode1.ContextMenuStrip = this.contextMenuBiblioteca;
-            treeNode1.ImageIndex = 0;
-            treeNode1.Name = "Node3";
-            treeNode1.SelectedImageIndex = 0;
-            treeNode1.Text = "Música";
-            treeNode2.ContextMenuStrip = this.contextCrearProyecto;
-            treeNode2.ImageIndex = 4;
-            treeNode2.Name = "Node5";
-            treeNode2.SelectedImageKey = "if_future-projects_59161.png";
-            treeNode2.Text = "Proyectos";
+            treeNode3.ContextMenuStrip = this.contextMenuBiblioteca;
+            treeNode3.ImageIndex = 0;
+            treeNode3.Name = "Node3";
+            treeNode3.SelectedImageIndex = 0;
+            treeNode3.Text = "Música";
+            treeNode4.ContextMenuStrip = this.contextCrearProyecto;
+            treeNode4.ImageIndex = 4;
+            treeNode4.Name = "Node5";
+            treeNode4.SelectedImageKey = "if_future-projects_59161.png";
+            treeNode4.Text = "Proyectos";
             this.tvListas.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode1,
-            treeNode2});
+            treeNode3,
+            treeNode4});
             this.tvListas.SelectedImageIndex = 0;
             this.tvListas.ShowRootLines = false;
             this.tvListas.Size = new System.Drawing.Size(199, 595);
@@ -712,14 +712,14 @@
             this.gridRepetidos.AllowUserToOrderColumns = true;
             this.gridRepetidos.AllowUserToResizeRows = false;
             this.gridRepetidos.BackgroundColor = System.Drawing.Color.White;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.gridRepetidos.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.gridRepetidos.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
             this.gridRepetidos.ColumnHeadersHeight = 25;
             this.gridRepetidos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.gridRepetidos.ContextMenuStrip = this.contextMenuMusicas;
@@ -759,20 +759,20 @@
             // 
             this.gridMusica.AllowUserToAddRows = false;
             this.gridMusica.AllowUserToResizeRows = false;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.WhiteSmoke;
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.Black;
-            this.gridMusica.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.WhiteSmoke;
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.Black;
+            this.gridMusica.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.gridMusica.BackgroundColor = System.Drawing.Color.White;
             this.gridMusica.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.gridMusica.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.gridMusica.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.gridMusica.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle6;
             this.gridMusica.ColumnHeadersHeight = 25;
             this.gridMusica.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.gridMusica.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -794,30 +794,30 @@
             // 
             // gridItems
             // 
-            this.gridItems.AllowUserToAddRows = false;
-            this.gridItems.AllowUserToResizeRows = false;
-            dataGridViewCellStyle4.BackColor = System.Drawing.Color.WhiteSmoke;
-            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.Black;
-            this.gridItems.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle4;
-            this.gridItems.BackgroundColor = System.Drawing.SystemColors.Window;
-            this.gridItems.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.gridItems.ColumnHeadersHeight = 25;
-            this.gridItems.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.gridItems.Location = new System.Drawing.Point(0, 0);
-            this.gridItems.MultiSelect = false;
-            this.gridItems.Name = "gridItems";
-            this.gridItems.RowHeadersWidth = 18;
-            this.gridItems.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.gridItems.Size = new System.Drawing.Size(825, 595);
-            this.gridItems.TabIndex = 0;
-            this.gridItems.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridItems_CellClick);
-            this.gridItems.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridCanciones_CellContentClick);
-            this.gridItems.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellEndEdit);
-            this.gridItems.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.gridItems_CellFormatting);
-            this.gridItems.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.gridMusica_CellMouseClick);
-            this.gridItems.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridItems_CellValueChanged);
-            this.gridItems.SelectionChanged += new System.EventHandler(this.curGrid_SelectionChanged);
-            this.gridItems.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.gridItems_MouseDoubleClick);
+            this.gridItemsClase.AllowUserToAddRows = false;
+            this.gridItemsClase.AllowUserToResizeRows = false;
+            dataGridViewCellStyle7.BackColor = System.Drawing.Color.WhiteSmoke;
+            dataGridViewCellStyle7.ForeColor = System.Drawing.Color.Black;
+            this.gridItemsClase.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle7;
+            this.gridItemsClase.BackgroundColor = System.Drawing.SystemColors.Window;
+            this.gridItemsClase.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.gridItemsClase.ColumnHeadersHeight = 25;
+            this.gridItemsClase.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.gridItemsClase.Location = new System.Drawing.Point(0, 0);
+            this.gridItemsClase.MultiSelect = false;
+            this.gridItemsClase.Name = "gridItems";
+            this.gridItemsClase.RowHeadersWidth = 18;
+            this.gridItemsClase.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.gridItemsClase.Size = new System.Drawing.Size(825, 595);
+            this.gridItemsClase.TabIndex = 0;
+            this.gridItemsClase.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridItems_CellClick);
+            this.gridItemsClase.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridCanciones_CellContentClick);
+            this.gridItemsClase.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellEndEdit);
+            this.gridItemsClase.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.gridItems_CellFormatting);
+            this.gridItemsClase.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.gridMusica_CellMouseClick);
+            this.gridItemsClase.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridItems_CellValueChanged);
+            this.gridItemsClase.SelectionChanged += new System.EventHandler(this.curGrid_SelectionChanged);
+            this.gridItemsClase.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.gridItems_MouseDoubleClick);
             // 
             // panel2
             // 
@@ -898,86 +898,86 @@
             // abrirToolStripMenuItem
             // 
             this.abrirToolStripMenuItem.Name = "abrirToolStripMenuItem";
-            this.abrirToolStripMenuItem.Size = new System.Drawing.Size(244, 22);
+            this.abrirToolStripMenuItem.Size = new System.Drawing.Size(245, 22);
             this.abrirToolStripMenuItem.Text = "Abrir";
             this.abrirToolStripMenuItem.Click += new System.EventHandler(this.LoadMusicLibrary);
             // 
             // cargarMúsicaToolStripMenuItem
             // 
             this.cargarMúsicaToolStripMenuItem.Name = "cargarMúsicaToolStripMenuItem";
-            this.cargarMúsicaToolStripMenuItem.Size = new System.Drawing.Size(244, 22);
+            this.cargarMúsicaToolStripMenuItem.Size = new System.Drawing.Size(245, 22);
             this.cargarMúsicaToolStripMenuItem.Text = "Cargar Música";
             this.cargarMúsicaToolStripMenuItem.Click += new System.EventHandler(this.cargarMúsicaToolStripMenuItem_Click);
             // 
             // borrarRepetidosToolStripMenuItem
             // 
             this.borrarRepetidosToolStripMenuItem.Name = "borrarRepetidosToolStripMenuItem";
-            this.borrarRepetidosToolStripMenuItem.Size = new System.Drawing.Size(244, 22);
+            this.borrarRepetidosToolStripMenuItem.Size = new System.Drawing.Size(245, 22);
             this.borrarRepetidosToolStripMenuItem.Text = "Borrar repetidos";
             this.borrarRepetidosToolStripMenuItem.Click += new System.EventHandler(this.borrarRepetidosToolStripMenuItem_Click);
             // 
             // loadRepetidosToolStripMenuItem
             // 
             this.loadRepetidosToolStripMenuItem.Name = "loadRepetidosToolStripMenuItem";
-            this.loadRepetidosToolStripMenuItem.Size = new System.Drawing.Size(244, 22);
+            this.loadRepetidosToolStripMenuItem.Size = new System.Drawing.Size(245, 22);
             this.loadRepetidosToolStripMenuItem.Text = "Load Repetidos";
             this.loadRepetidosToolStripMenuItem.Click += new System.EventHandler(this.loadRepetidosToolStripMenuItem_Click);
             // 
             // toolStripMenuItem3
             // 
             this.toolStripMenuItem3.Name = "toolStripMenuItem3";
-            this.toolStripMenuItem3.Size = new System.Drawing.Size(241, 6);
+            this.toolStripMenuItem3.Size = new System.Drawing.Size(242, 6);
             // 
             // crearClaseToolStripMenuItem
             // 
             this.crearClaseToolStripMenuItem.Name = "crearClaseToolStripMenuItem";
-            this.crearClaseToolStripMenuItem.Size = new System.Drawing.Size(244, 22);
+            this.crearClaseToolStripMenuItem.Size = new System.Drawing.Size(245, 22);
             this.crearClaseToolStripMenuItem.Text = "Crear clase";
             // 
             // listaReproduccionToolStripMenuItem
             // 
             this.listaReproduccionToolStripMenuItem.Name = "listaReproduccionToolStripMenuItem";
-            this.listaReproduccionToolStripMenuItem.Size = new System.Drawing.Size(244, 22);
+            this.listaReproduccionToolStripMenuItem.Size = new System.Drawing.Size(245, 22);
             this.listaReproduccionToolStripMenuItem.Text = "Lista de reproducción";
             this.listaReproduccionToolStripMenuItem.Click += new System.EventHandler(this.listaReproduccionToolStripMenuItem_Click);
             // 
             // toolStripMenuItem5
             // 
             this.toolStripMenuItem5.Name = "toolStripMenuItem5";
-            this.toolStripMenuItem5.Size = new System.Drawing.Size(241, 6);
+            this.toolStripMenuItem5.Size = new System.Drawing.Size(242, 6);
             // 
             // vaciarToolStripMenuItem
             // 
             this.vaciarToolStripMenuItem.Name = "vaciarToolStripMenuItem";
-            this.vaciarToolStripMenuItem.Size = new System.Drawing.Size(244, 22);
+            this.vaciarToolStripMenuItem.Size = new System.Drawing.Size(245, 22);
             this.vaciarToolStripMenuItem.Text = "Vaciar ";
             this.vaciarToolStripMenuItem.Click += new System.EventHandler(this.vaciarToolStripMenuItem_Click);
             // 
             // copiaDeSeguridadToolStripMenuItem
             // 
             this.copiaDeSeguridadToolStripMenuItem.Name = "copiaDeSeguridadToolStripMenuItem";
-            this.copiaDeSeguridadToolStripMenuItem.Size = new System.Drawing.Size(244, 22);
+            this.copiaDeSeguridadToolStripMenuItem.Size = new System.Drawing.Size(245, 22);
             this.copiaDeSeguridadToolStripMenuItem.Text = "Copia de seguridad";
             this.copiaDeSeguridadToolStripMenuItem.Click += new System.EventHandler(this.copiaDeSeguridadToolStripMenuItem_Click);
             // 
             // restaurarCopiaDeSeguridadToolStripMenuItem
             // 
             this.restaurarCopiaDeSeguridadToolStripMenuItem.Name = "restaurarCopiaDeSeguridadToolStripMenuItem";
-            this.restaurarCopiaDeSeguridadToolStripMenuItem.Size = new System.Drawing.Size(244, 22);
+            this.restaurarCopiaDeSeguridadToolStripMenuItem.Size = new System.Drawing.Size(245, 22);
             this.restaurarCopiaDeSeguridadToolStripMenuItem.Text = "Restaurar copia de seguridad";
             this.restaurarCopiaDeSeguridadToolStripMenuItem.Click += new System.EventHandler(this.restaurarCopiaDeSeguridadToolStripMenuItem_Click);
             // 
             // comprobarSiExistenEnElDiscoToolStripMenuItem
             // 
             this.comprobarSiExistenEnElDiscoToolStripMenuItem.Name = "comprobarSiExistenEnElDiscoToolStripMenuItem";
-            this.comprobarSiExistenEnElDiscoToolStripMenuItem.Size = new System.Drawing.Size(244, 22);
+            this.comprobarSiExistenEnElDiscoToolStripMenuItem.Size = new System.Drawing.Size(245, 22);
             this.comprobarSiExistenEnElDiscoToolStripMenuItem.Text = "Comprobar si existen en el disco";
             this.comprobarSiExistenEnElDiscoToolStripMenuItem.Click += new System.EventHandler(this.comprobarSiExistenEnElDiscoToolStripMenuItem_Click);
             // 
             // inventarioToolStripMenuItem
             // 
             this.inventarioToolStripMenuItem.Name = "inventarioToolStripMenuItem";
-            this.inventarioToolStripMenuItem.Size = new System.Drawing.Size(244, 22);
+            this.inventarioToolStripMenuItem.Size = new System.Drawing.Size(245, 22);
             this.inventarioToolStripMenuItem.Text = "Inventario";
             // 
             // MusicManager
@@ -1024,7 +1024,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.gridRepetidos)).EndInit();
             this.contextMenuMusicas.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.gridMusica)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridItems)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridItemsClase)).EndInit();
             this.panel2.ResumeLayout(false);
             this.panel3.ResumeLayout(false);
             this.menuStrip2.ResumeLayout(false);
@@ -1042,7 +1042,7 @@
         private System.Windows.Forms.Button btnStop;
         private System.Windows.Forms.ContextMenuStrip contextCrearProyecto;
         private System.Windows.Forms.ContextMenuStrip contextMenuBiblioteca;
-        private System.Windows.Forms.DataGridView gridItems;
+        private System.Windows.Forms.DataGridView gridItemsClase;
         private System.Windows.Forms.DataGridView gridMusica;
         private System.Windows.Forms.ImageList imageList1;
         private System.Windows.Forms.MenuStrip menuStrip2;
@@ -1100,14 +1100,14 @@
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem4;
         private System.Windows.Forms.ToolStripMenuItem seleccionarTodoToolStripMenuItem;
         private MyLabel txtResta;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label1;
+        
+        
         private System.Windows.Forms.ToolStripMenuItem añadirCanciónToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem5;
         private System.Windows.Forms.ToolStripMenuItem vaciarToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem copiaDeSeguridadToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem restaurarCopiaDeSeguridadToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem6;
+        
         private System.Windows.Forms.ToolStripMenuItem comprobarSiExistenEnElDiscoToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem inventarioToolStripMenuItem;
     }

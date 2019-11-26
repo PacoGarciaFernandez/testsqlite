@@ -91,7 +91,7 @@ namespace biodanza
         {
             if(text == null)
             { text = ""; }
-            text = text.Replace("'", "''");
+            text = text.Replace("'", " ");
             text = text.Replace(@"\", @"\\");
            
             //text = text.Replace(@"/", @"");

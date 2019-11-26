@@ -68,7 +68,7 @@ namespace biodanza
         }
         public void FullFilter(string text)
         {
-            string query = "Titulo, Autor, Duracion, genero";
+          
         }
 
         public void DeleteNoDuplicates()

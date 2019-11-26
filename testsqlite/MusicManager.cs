@@ -23,6 +23,8 @@ using ShellID3Reader;
 using TagLib.Id3v2;
 using TagLib;
 using NAudio.Wave;
+using HundredMilesSoftware.UltraID3Lib;
+
 
 namespace biodanza
 {
@@ -112,14 +114,14 @@ namespace biodanza
         //PromptBuilder cultureSpain;
 
         
-        bool isSound = false;
+        
         Thread th1 = null;
         LoopbackRecorder recorder;
         string tmpfilename = string.Empty;
         bool isRecording = false;
         Stopwatch stopWatch = null;
-        DateTime durationRec = new DateTime();
-        Int32 tiempoespera = 0;
+        
+        
         TreeNode selected = null;
         //private string dragedItemText;
 
@@ -132,12 +134,11 @@ namespace biodanza
        
         DataGridView curGrid = null;
 
-        private Int32 LastClassUsed;
+        
 
         private TreeNode nodeMusic;
         private TreeNode nodeProyect;
-        private TreeNode nodeCuentos;
-
+        
         private Int32 curRow = 0;
         private DataGridViewColumn curCol = null;
         
@@ -145,13 +146,15 @@ namespace biodanza
 
         private bool isInLoop = false;
         private bool breakLoop = false;
+        private string PathMusic = Environment.GetFolderPath(Environment.SpecialFolder.MyMusic);
+
 
         public MusicManager()
         {
             InitializeComponent();
             carpetas = new Dictionary<int, TreeNode>();
 
-            grids.Add(gridItems);                //grids.Add(gridClases);
+            grids.Add(gridItemsClase);                //grids.Add(gridClases);
             
             grids.Add(gridMusica);
             grids.Add(gridRepetidos);            //grids.Add(gridClaseDef);
@@ -170,8 +173,7 @@ namespace biodanza
             this.LoadTree();
             
         }
-
-
+               
         private void MusicManager_Load(object sender, EventArgs e)
         {
             FormBorderStyle = FormBorderStyle.Sizable;
@@ -190,28 +192,6 @@ namespace biodanza
 
         }
 
-       
-        //private void ConfigureGridClases()
-        //{
-        //    gridClases.RowHeadersVisible = false;
-        //    gridClases.CellBorderStyle = DataGridViewCellBorderStyle.None;
-
-        //    gridClases.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-        //    gridClases.CellBorderStyle = DataGridViewCellBorderStyle.None;
-        //    gridClases.RowHeadersVisible = false;
-
-        //    gridClases.Columns[0].Visible = false;
-        //    gridClases.Columns[1].Visible = false;
-        //    gridClases.Columns[2].Visible = false;
-        //    gridClases.Columns[3].Visible = false;
-        //    gridClases.Columns[4].Visible = false;
-        //    gridClases.Columns[5].HeaderText = "Nombre Clase";
-        //    gridClases.Columns[5].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleLeft;
-        //    gridClases.RowsDefaultCellStyle.BackColor = Color.White;
-
-        //    gridClases.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(245,245,245);
-
-        //}
         private void ConfigurarGridMusica()
         {
             gridMusica.RowHeadersVisible = false;
@@ -291,10 +271,10 @@ namespace biodanza
         
         private void ConfigurarGridItems()
         {
-            gridItems.RowHeadersVisible = false;
-            gridItems.CellBorderStyle = DataGridViewCellBorderStyle.None;
+            gridItemsClase.RowHeadersVisible = false;
+            gridItemsClase.CellBorderStyle = DataGridViewCellBorderStyle.None;
 
-            foreach (DataGridViewColumn c in gridItems.Columns)
+            foreach (DataGridViewColumn c in gridItemsClase.Columns)
             {
                 if (c.Name != "ORDEN")
                 {
@@ -302,87 +282,87 @@ namespace biodanza
                 }
             }
 
-            gridItems.Columns["id"].Visible = false;
-            gridItems.Columns["id_carpetalista"].Visible = false;
-            gridItems.Columns["id_item"].Visible = false;
-            gridItems.Columns["itemid"].Visible = false;
-            gridItems.Columns["orden"].Visible = false;
-            gridItems.Columns["desde"].Visible = true;
-            gridItems.Columns["hasta"].Visible = true;
+            gridItemsClase.Columns["id"].Visible = false;
+            gridItemsClase.Columns["id_carpetalista"].Visible = false;
+            gridItemsClase.Columns["id_item"].Visible = false;
+            gridItemsClase.Columns["itemid"].Visible = false;
+            gridItemsClase.Columns["orden"].Visible = false;
+            gridItemsClase.Columns["desde"].Visible = true;
+            gridItemsClase.Columns["hasta"].Visible = true;
 
-            gridItems.Columns["localizacion"].Visible = false;
+            gridItemsClase.Columns["localizacion"].Visible = false;
 
-            gridItems.Columns["repetir"].Visible = false;
-            gridItems.Columns["repetir"].Width = 40;
-            gridItems.Columns["repetir"].HeaderText = "Rep.";
-            gridItems.Columns["repetir"].DisplayIndex = 4;
-            gridItems.Columns["repetir"].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            gridItemsClase.Columns["repetir"].Visible = false;
+            gridItemsClase.Columns["repetir"].Width = 40;
+            gridItemsClase.Columns["repetir"].HeaderText = "Rep.";
+            gridItemsClase.Columns["repetir"].DisplayIndex = 4;
+            gridItemsClase.Columns["repetir"].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleLeft;
 
-            if (!gridItems.Columns.Contains("loop"))
+            if (!gridItemsClase.Columns.Contains("loop"))
             {
                 DataGridViewImageColumn img = new DataGridViewImageColumn();
                 img.Name = "loop";
                 //img.DefaultCellStyle.SelectionBackColor = this.gridItems.DefaultCellStyle.BackColor;
                 //img.DefaultCellStyle.SelectionForeColor = this.gridItems.DefaultCellStyle.ForeColor;
-                this.gridItems.Columns.Add(img);
+                this.gridItemsClase.Columns.Add(img);
             }
-            gridItems.Columns["loop"].Visible = true;
-            gridItems.Columns["loop"].DisplayIndex = 0;
-            gridItems.Columns["loop"].HeaderText = "Rep.";
-            gridItems.Columns["loop"].Width = 40;
+            gridItemsClase.Columns["loop"].Visible = true;
+            gridItemsClase.Columns["loop"].DisplayIndex = 0;
+            gridItemsClase.Columns["loop"].HeaderText = "Rep.";
+            gridItemsClase.Columns["loop"].Width = 40;
 
-            gridItems.Columns["ORDEN"].Width = 50;
-            gridItems.Columns["ORDEN"].HeaderText = "Orden";
-            gridItems.Columns["ORDEN"].DisplayIndex = 0;
-            gridItems.Columns["ORDEN"].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            gridItemsClase.Columns["ORDEN"].Width = 50;
+            gridItemsClase.Columns["ORDEN"].HeaderText = "Orden";
+            gridItemsClase.Columns["ORDEN"].DisplayIndex = 0;
+            gridItemsClase.Columns["ORDEN"].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleLeft;
 
-            gridItems.Columns["TITULO"].Width = 250;
-            gridItems.Columns["TITULO"].HeaderText = "Nombre";
-            gridItems.Columns["TITULO"].DisplayIndex = 1;
-            gridItems.Columns["TITULO"].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            gridItemsClase.Columns["TITULO"].Width = 250;
+            gridItemsClase.Columns["TITULO"].HeaderText = "Nombre";
+            gridItemsClase.Columns["TITULO"].DisplayIndex = 1;
+            gridItemsClase.Columns["TITULO"].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleLeft;
 
-            gridItems.Columns["TIPOITEM"].Visible = false;
-            gridItems.Columns["TIPOITEM"].HeaderText = "Tipo";
-            gridItems.Columns["TIPOITEM"].Width = 40;
-            gridItems.Columns["TIPOITEM"].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            gridItemsClase.Columns["TIPOITEM"].Visible = false;
+            gridItemsClase.Columns["TIPOITEM"].HeaderText = "Tipo";
+            gridItemsClase.Columns["TIPOITEM"].Width = 40;
+            gridItemsClase.Columns["TIPOITEM"].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleLeft;
 
-            gridItems.Columns["DURACION"].Width = 90;
-            gridItems.Columns["DURACION"].HeaderText = "Duración";
-            gridItems.Columns["DURACION"].DisplayIndex = 2;
-            gridItems.Columns["DURACION"].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            gridItems.Columns["duracion"].DefaultCellStyle.Format = "HH:mm:ss";
+            gridItemsClase.Columns["DURACION"].Width = 90;
+            gridItemsClase.Columns["DURACION"].HeaderText = "Duración";
+            gridItemsClase.Columns["DURACION"].DisplayIndex = 2;
+            gridItemsClase.Columns["DURACION"].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            gridItemsClase.Columns["duracion"].DefaultCellStyle.Format = "HH:mm:ss";
 
-            gridItems.Columns["AUTOR"].Width = 180;
-            gridItems.Columns["AUTOR"].HeaderText = "Artista";
-            gridItems.Columns["AUTOR"].DisplayIndex = 3;
-            gridItems.Columns["AUTOR"].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            gridItemsClase.Columns["AUTOR"].Width = 180;
+            gridItemsClase.Columns["AUTOR"].HeaderText = "Artista";
+            gridItemsClase.Columns["AUTOR"].DisplayIndex = 3;
+            gridItemsClase.Columns["AUTOR"].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleLeft;
 
-            gridItems.Columns["album"].Visible = true;
-            gridItems.Columns["album"].DisplayIndex = 5;
-            gridItems.Columns["album"].HeaderText = "Album";
-            gridItems.Columns["album"].Width = 250;
-            gridItems.Columns["album"].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            gridItemsClase.Columns["album"].Visible = true;
+            gridItemsClase.Columns["album"].DisplayIndex = 5;
+            gridItemsClase.Columns["album"].HeaderText = "Album";
+            gridItemsClase.Columns["album"].Width = 250;
+            gridItemsClase.Columns["album"].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleLeft;
 
             
 
-            gridItems.Columns["GENERO"].Width = 250;
-            gridItems.Columns["GENERO"].HeaderText = "Género";
-            gridItems.Columns["GENERO"].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            gridItemsClase.Columns["GENERO"].Width = 250;
+            gridItemsClase.Columns["GENERO"].HeaderText = "Género";
+            gridItemsClase.Columns["GENERO"].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleLeft;
 
-            gridItems.Columns["desde"].Visible = true;
-            gridItems.Columns["desde"].DisplayIndex = 7;
-            gridItems.Columns["desde"].HeaderText = "Empieza";
-            gridItems.Columns["desde"].Width = 70;
-            gridItems.Columns["desde"].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            gridItemsClase.Columns["desde"].Visible = true;
+            gridItemsClase.Columns["desde"].DisplayIndex = 7;
+            gridItemsClase.Columns["desde"].HeaderText = "Empieza";
+            gridItemsClase.Columns["desde"].Width = 70;
+            gridItemsClase.Columns["desde"].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleLeft;
 
-            gridItems.Columns["hasta"].Visible = true;
-            gridItems.Columns["hasta"].DisplayIndex = 8;
-            gridItems.Columns["hasta"].HeaderText = "Termina";
-            gridItems.Columns["hasta"].Width = 700;
-            gridItems.Columns["hasta"].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            gridItemsClase.Columns["hasta"].Visible = true;
+            gridItemsClase.Columns["hasta"].DisplayIndex = 8;
+            gridItemsClase.Columns["hasta"].HeaderText = "Termina";
+            gridItemsClase.Columns["hasta"].Width = 700;
+            gridItemsClase.Columns["hasta"].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleLeft;
 
-            gridItems.Columns["duracion"].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            gridItems.Columns["duracion"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            gridItemsClase.Columns["duracion"].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            gridItemsClase.Columns["duracion"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
             //gridCarpetaLista.RowsDefaultCellStyle.BackColor = Color.White;
             //gridCarpetaLista.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(245, 245, 245);
             
@@ -432,14 +412,7 @@ namespace biodanza
                     e.Value = Properties.Resources.lyric;
                 }
             }
-            //if (gridMusica.Columns[e.ColumnIndex].Name == "perdido")
-            //{
-            //    if( Convert.ToBoolean(e.Value) )
-            //    {
-            //        e.CellStyle.Font = new Font(e.CellStyle.Font, FontStyle.Strikeout);
-            //    }
-            //}
-
+         
         }
 
         void gridItems_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
@@ -447,10 +420,10 @@ namespace biodanza
 
             if (e.RowIndex > -1)
             {
-                if(gridItems.Columns[e.ColumnIndex].Name == "loop")
+                if(gridItemsClase.Columns[e.ColumnIndex].Name == "loop")
                 {
                         // Your code would go here - below is just the code I used to test 
-                        var data = gridItems.Rows[e.RowIndex].Cells["repetir"].Value;
+                        var data = gridItemsClase.Rows[e.RowIndex].Cells["repetir"].Value;
                         if (data != DBNull.Value && Convert.ToInt32(data) == 0)
                         {
                             e.Value = Properties.Resources.repetiroff;
@@ -568,31 +541,15 @@ namespace biodanza
             this.ShowGrid(gridMusica);
         }
         
-        //private void LoadGridClases(Int32 proyecto)
-        //{
-        //    ListaClasesProMng pm = new ListaClasesProMng();
-        //    pm.Filter("id_proyecto =" + proyecto.ToString());
-        //    pm.Attach(gridClases);
-        //    ConfigureGridClases();
-        //    this.ShowGrid(gridClases);
-
-        //}
-        //private void LoadGridClaseDef()
-        //{
-        //    ListaClasesMng pm = new ListaClasesMng();
-        //    pm.Attach(gridClaseDef);
-        //    ConfigureGridClaseDef();
-        //    this.ShowGrid(gridClaseDef);
-            
-        //}
+        
         private void LoadGridItems(Int32 clase)
         {
             ListaItemsMng lim = new ListaItemsMng();
             lim.Filter("ID_CARPETALISTA=" + clase.ToString());
             lim.Sort("ORDEN ASC");
-            lim.Attach(gridItems);
+            lim.Attach(gridItemsClase);
             ConfigurarGridItems();
-            this.ShowGrid(gridItems);
+            this.ShowGrid(gridItemsClase);
 
         }
         private void ShowGrid(DataGridView grid)
@@ -624,7 +581,7 @@ namespace biodanza
 
             Int32 i = curGrid.SelectedCells[0].RowIndex;
             bool repetir = false;
-            bool clase = curGrid == gridItems;
+            bool clase = curGrid == gridItemsClase;
 
             System.IO.File.AppendAllText(Path.Combine(Path.GetDirectoryName(Application.ExecutablePath), "estados.log"), e.newState.ToString()+Environment.NewLine);
             
@@ -637,16 +594,15 @@ namespace biodanza
             if (e.newState == (int)PlayState.Playing)
             {
                 trackBar2.Value = (int)wmPlayer.Ctlcontrols.currentPosition;
-                btnPlay.Image = Properties.Resources.if_icon_pause_211871;// if_067_Pause_183196;
-                isSound = true;
+                //btnPlay.Image = Properties.Resources.if_icon_pause_211871;// if_067_Pause_183196;
                 txtCancion.Text = curGrid.Rows[i].Cells["titulo"].Value.ToString();
                 txtAutor_Album.Text = curGrid.Rows[i].Cells["autor"].Value.ToString() + " - " + curGrid.Rows[i].Cells["album"].Value.ToString();
             }
             else if (e.newState == (int)PlayState.Stopped)
             {
                 
-                btnPlay.Image = Properties.Resources.if_play_arrow_326577_1_;
-                isSound = false;
+               //btnPlay.Image = Properties.Resources.if_play_arrow_326577_1_;
+
                 program_state = PlayState.Stopped;
                 
                 Application.DoEvents();
@@ -658,9 +614,11 @@ namespace biodanza
             {
                 trackBar2.Value = (int)wmPlayer.Ctlcontrols.currentPosition;
                 btnPlay.Image = Properties.Resources.if_play_arrow_326577_1_;
-                isSound = false;
                 program_state = PlayState.Stopped;
-                th1.Suspend();
+                if (th1.IsAlive)
+                {
+                    th1.Suspend();
+                }
 
             }
             
@@ -675,8 +633,9 @@ namespace biodanza
         }
         private void btnPause_Click(object sender, EventArgs e)
         {
-            btnPlay.Visible = true;
             btnPause.Visible = false;
+            btnPlay.Visible = true;
+            
             program_state = PlayState.Stopped;
             stopWatch.Stop();
             wmPlayer.Ctlcontrols.pause();
@@ -726,7 +685,7 @@ namespace biodanza
                 //Uri uriAddress = new Uri(curGrid.Rows[i].Cells["localizacion"].Value.ToString());
                 //file = uriAddress.ToString().Replace(@"file:///", "");
                 file = curGrid.Rows[i].Cells["localizacion"].Value.ToString();
-
+                file = Path.Combine(file, titulo);
 
                 TagLib.File y = null;
                 var id3 = y;
@@ -1142,11 +1101,24 @@ namespace biodanza
         }
         private void LoadDeepFolderEx(string sDir)
         {
+            DataTable table = new DataTable();
+            table.Columns.Add("Canción" , typeof(string));
+            table.Columns.Add("Artista" , typeof(string));
+            table.Columns.Add("Título"  , typeof(string));
+            table.Columns.Add("Album"   , typeof(string));
+            table.Columns.Add("Genero"  , typeof(string));
+            table.Columns.Add("Track"   , typeof(string));
+            table.Columns.Add("Año"     , typeof(string));
+            table.Columns.Add("Duracion", typeof(string));
+            table.Columns.Add("Path"    , typeof(string));
+
+
+
             string file = Path.GetTempFileName();
 
             sDir = SecurePath(sDir);
 
-            System.IO.File.WriteAllText("myrun.bat", @"dir " + sDir + "*.mp3 /s/b > " + file);
+            System.IO.File.WriteAllText("myrun.bat", "dir \"" + sDir + "*.mp3\" /s/b > " + file);
             
             ProcessStartInfo psi = new ProcessStartInfo("cmd.exe")
             {
@@ -1164,7 +1136,56 @@ namespace biodanza
 
             string[] lines = System.IO.File.ReadAllLines(file, Encoding.GetEncoding(850));
 
+            foreach (string cancion in lines)
+            {
+                try
+                {
+                    //MP3File mp3 = ShellID3TagReader.ReadID3Tags(cancion);
+
+                    //DataRow row = table.NewRow();
+                    //row["Canción"] = Path.GetFileName(cancion);
+                    //row["Artista"] = mp3.ArtistName;
+                    //row["Título"] = mp3.SongTitle;
+                    //row["Album"] = mp3.AlbumName;
+                    //row["Genero"] = mp3.Genre;
+                    //row["Track"] = mp3.TrackNumber;
+                    //row["Año"] = mp3.Time;
+                    //row["Duracion"] = mp3.Duration;
+                    //row["Path"] = Path.GetDirectoryName(cancion);
+
+
+
+                    UltraID3 myMp3 = new UltraID3();
+                    myMp3.Read(cancion);
+                    DataRow row = table.NewRow();
+
+                    row["Canción"] = Path.GetFileName(cancion);
+                    row["Artista"] = myMp3.ID3v2Tag.Artist;
+                    row["Título"] = myMp3.ID3v2Tag.Title;
+                    row["Album"] = myMp3.ID3v2Tag.Album;
+                    row["Genero"] = myMp3.ID3v2Tag.Genre;
+                    row["Track"] = myMp3.ID3v2Tag.TrackNum.ToString();
+                    row["Año"] = myMp3.ID3v2Tag.Year.ToString();
+                    row["Duracion"] = myMp3.Duration.ToString();
+                    row["Path"] = Path.GetDirectoryName(cancion);
+
+                    table.Rows.Add(row);
+                }
+                catch
+                {
+                    
+                }
+            }
+
             Dictionary<string, ArrayList> dups = new Dictionary<string, ArrayList>();
+
+            //var query = lines.GroupBy(x => Path.GetFileName(x))
+            //  .Where(g => g.Count() > 1)
+            //  .Select(y => y.Key)
+            //  .ToList();
+
+            var lista = lines.OrderBy(x => Path.GetFileName(x.ToUpper())).ToList();
+
 
             using (StreamReader sr = new StreamReader(file, Encoding.GetEncoding(850)))
             {
@@ -1179,7 +1200,7 @@ namespace biodanza
                             this.item.Nuevo(fi);
                         }
                     }
-                    catch (Exception)
+                    catch (Exception e)
                     {
 
                     }
@@ -1188,8 +1209,6 @@ namespace biodanza
         }
         private void LoadDeepFolder(string sDir)
         {
-            //try
-            //{
             foreach (string d in Directory.GetDirectories(sDir))
             {
                 foreach (string f in Directory.GetFiles(d))
@@ -1211,13 +1230,6 @@ namespace biodanza
 
                 LoadDeepFolder(d);
             }
-            
-             
-           // }
-            /*catch (System.Exception excpt)
-            {
-                Console.WriteLine(excpt.Message);
-            }*/
         }
         private void textBoxSearch_KeyDown(object sender, KeyEventArgs e)
         {
@@ -1305,16 +1317,16 @@ namespace biodanza
         }
         private void dataGridView1_CellEndEdit(object sender, DataGridViewCellEventArgs e)
         {
-            Int32 i = gridItems.SelectedCells[0].RowIndex;
+            Int32 i = gridItemsClase.SelectedCells[0].RowIndex;
             string file = gridMusica.Rows[i].Cells["localizacion"].Value.ToString();
 
             ListaItemsMng lim = new ListaItemsMng();
             lista_items li = new lista_items();
-            li.id = Convert.ToInt32(gridItems.Rows[i].Cells["id"].Value);
-            li.id_carpetalista = Convert.ToInt32(gridItems.Rows[i].Cells["id_carpetalista"].Value);
-            li.id_item = Convert.ToInt32(gridItems.Rows[i].Cells["id_item"].Value);
-            li.orden = Convert.ToInt32(gridItems.Rows[i].Cells["orden"].Value);
-            li.repetir = Convert.ToInt32(gridItems.Rows[i].Cells["repetir"].Value);
+            li.id = Convert.ToInt32(gridItemsClase.Rows[i].Cells["id"].Value);
+            li.id_carpetalista = Convert.ToInt32(gridItemsClase.Rows[i].Cells["id_carpetalista"].Value);
+            li.id_item = Convert.ToInt32(gridItemsClase.Rows[i].Cells["id_item"].Value);
+            li.orden = Convert.ToInt32(gridItemsClase.Rows[i].Cells["orden"].Value);
+            li.repetir = Convert.ToInt32(gridItemsClase.Rows[i].Cells["repetir"].Value);
             lim.Update(li);
 
             //MessageBox.Show(gridItems.Rows[i].Cells["ORDEN"].Value.ToString());
@@ -1550,6 +1562,16 @@ namespace biodanza
         }
         private void cargarMúsicaToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            FolderBrowserDialog folderDlg = new FolderBrowserDialog();
+            folderDlg.ShowNewFolderButton = true;
+            
+            // Show the FolderBrowserDialog.  
+            DialogResult result = folderDlg.ShowDialog();
+            if (result == DialogResult.OK)
+            {
+                PathMusic = folderDlg.SelectedPath;
+            }
+            LoadDeepFolderEx(PathMusic);
             item.dt = item.GetData();
             LoadGridMusica();
         }
@@ -1558,7 +1580,7 @@ namespace biodanza
 
             repes.DeleteAll();
             // ExecuteCommand(); // LoadDeepFolder(@"c:\Users\francisco.garcia\Music", true);
-            BuscaDuplicados(@"c:\Users\francisco.garcia\Music");
+            BuscaDuplicados(PathMusic);
             
             LoadGridRepetidos();
         }
@@ -1585,6 +1607,13 @@ namespace biodanza
             proc.Close();
 
             string[] lines = System.IO.File.ReadAllLines(file, Encoding.GetEncoding(850));
+
+            var query = lines.GroupBy(x => Path.GetFileName(x))
+              .Where(g => g.Count() > 1)
+              .Select(y => y.Key)
+              .ToList();
+
+            var query2 = lines.Where(g => query.Contains(Path.GetFileName(g))).Select(g => g).OrderBy(g=>Path.GetFileName(g)).ToList();
 
             Dictionary<string, ArrayList> dups = new Dictionary<string, ArrayList>();
 
@@ -1644,7 +1673,8 @@ namespace biodanza
         }
         private void loadRepetidosToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            LoadGridRepetidos();
+            //LoadGridRepetidos();
+            BuscaDuplicados(PathMusic);
         }
         private void propiedadesToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -1698,10 +1728,10 @@ namespace biodanza
         {
             if (e.RowIndex != -1)
             {
-                if (gridMusica.Rows[e.RowIndex].Cells["perdido"].Value.ToString() == "1")
-                {
-                    gridMusica.Rows[e.RowIndex].DefaultCellStyle.Font = new Font(gridMusica.Font, FontStyle.Strikeout);
-                }
+                ////if (gridMusica.Rows[e.RowIndex].Cells["perdido"].Value.ToString() == "1")
+                //{
+                //    gridMusica.Rows[e.RowIndex].DefaultCellStyle.Font = new Font(gridMusica.Font, FontStyle.Strikeout);
+                //}
             }
 
             //if (e.RowIndex == -1 && gridMusica.Columns[e.ColumnIndex].Name == "loop")
@@ -1734,6 +1764,7 @@ namespace biodanza
 
             ContextMenu mnuContextMenu = new ContextMenu();
 
+            mnuContextMenu.MenuItems.Add("Editar", new EventHandler(MngGridMusicaContext));
             mnuContextMenu.MenuItems.Add("Propiedades", new EventHandler(MngGridMusicaContext));
             MenuItem m = mnuContextMenu.MenuItems.Add("Añadir a clase...", new EventHandler(MngGridMusicaContext));
             mnuContextMenu.MenuItems.Add("Buscar letra", new EventHandler(MngGridMusicaContext));
@@ -1746,7 +1777,7 @@ namespace biodanza
             mnuContextMenu.MenuItems.Add("Draw Wave", new EventHandler(MngGridMusicaContext));
             mnuContextMenu.MenuItems.Add("Idioma", new EventHandler(MngGridMusicaContext));
             mnuContextMenu.MenuItems.Add("Borrar", new EventHandler(MngGridMusicaContext));
-            if (curGrid == gridItems)
+            if (curGrid == gridItemsClase)
             {
                 mnuContextMenu.MenuItems.Add("Editar", new EventHandler(MngGridMusicaContext));
                 mnuContextMenu.MenuItems.Add("Ordenar", new EventHandler(MngGridMusicaContext));
@@ -1768,8 +1799,9 @@ namespace biodanza
                 mnuContextMenu.MenuItems.Add("Nueva carpeta", new EventHandler(MngProyectoContext));
             }
             mnuContextMenu.MenuItems.Add("-");
-            mnuContextMenu.MenuItems.Add("Nueva clase", new EventHandler(MngProyectoContext));
-            mnuContextMenu.MenuItems.Add("-");
+            //mnuContextMenu.MenuItems.Add("Nueva clase", new EventHandler(MngProyectoContext));
+            //mnuContextMenu.MenuItems.Add("-");
+            mnuContextMenu.MenuItems.Add("Editar clase", new EventHandler(MngProyectoContext));
             mnuContextMenu.MenuItems.Add("Cambiar nombre", new EventHandler(MngProyectoContext));
             mnuContextMenu.MenuItems.Add("Eliminar", new EventHandler(MngProyectoContext));
             if (!carpeta)
@@ -1803,6 +1835,18 @@ namespace biodanza
                     node.BeginEdit();
                     return;
                 }
+            }
+            else if (text == "Editar clase")
+            {
+                CarpetaListaMng clm = new CarpetaListaMng();
+                CarpetaLista cl = clm.GetCarpetaLista(id);
+                
+                Clase clase = new Clase(cl);
+                if (clase.ShowDialog() != DialogResult.OK)
+                    return;
+
+
+
             }
             else if (text == "Eliminar")
             {
@@ -1850,8 +1894,8 @@ namespace biodanza
             }
             else if (text == "Crear acceso directo")
             {
-                
-                
+
+
                 //var pl = wmPlayer.playlistCollection.newPlaylist("plList");
                 //WMPLib.IWMPMedia item = wmPlayer.newMedia(@"D:\nosazi.wmv");
                 //item.
@@ -1875,12 +1919,12 @@ namespace biodanza
 
                 int iItems = lim.dv.Count;
 
-                while( curRow <= iItems)     //                foreach (DataRowView row in lim.dv)
+                while (curRow <= iItems)     //                foreach (DataRowView row in lim.dv)
                 {
                     isInLoop = true;
-                    gridItems.Rows[curRow].Selected = true;
+                    gridItemsClase.Rows[curRow].Selected = true;
 
-                    btnPlay_Click(null,null);
+                    btnPlay_Click(null, null);
                     try
                     {
                         while (wmPlayer != null && (wmPlayer.playState == WMPLib.WMPPlayState.wmppsTransitioning || wmPlayer.playState != WMPLib.WMPPlayState.wmppsStopped))
@@ -1891,14 +1935,14 @@ namespace biodanza
                                 break;
                             }
                         }
-                        Int32.TryParse(gridItems.Rows[curRow].Cells["esperar"].Value.ToString(), out wait);
+                        Int32.TryParse(gridItemsClase.Rows[curRow].Cells["esperar"].Value.ToString(), out wait);
                     }
                     catch
                     {
 
                     }
 
-                    if (gridItems.Rows.Count == 0)
+                    if (gridItemsClase.Rows.Count == 0)
                     {
                         return;
                     }
@@ -1916,7 +1960,7 @@ namespace biodanza
                             frm.ShowDialog();
                         }
 
-                        if (Convert.ToBoolean(gridItems.Rows[curRow].Cells["repetir"].Value))
+                        if (Convert.ToBoolean(gridItemsClase.Rows[curRow].Cells["repetir"].Value))
                         {
                             continue;
                         }
@@ -1925,7 +1969,7 @@ namespace biodanza
                 }
                 isInLoop = false;
 
-                
+
 
 
             }
@@ -1970,7 +2014,7 @@ namespace biodanza
             MenuItem mi = sender as MenuItem;
             //Access the clicked item here..
             string text = mi.Text;
-            Int32 i = gridMusica.SelectedCells[0].RowIndex;
+            Int32 i = curGrid.SelectedCells[0].RowIndex;
             if (text == "Añadir a clase...")
             {
                 FrmTreeClases frmtc = new FrmTreeClases();
@@ -1980,11 +2024,11 @@ namespace biodanza
                     ListaItemsMng lim = new ListaItemsMng();
                     lista_items li = new lista_items();
                     li.id_carpetalista = frmtc.id;
-                    li.id_item = Convert.ToInt32(gridMusica.Rows[i].Cells["id"].Value);
+                    li.id_item = Convert.ToInt32(curGrid.Rows[i].Cells["id"].Value);
                     li.orden = -1;
                     li.repetir = 0;
                     li.desde = "00:00";
-                    li.hasta = Convert.ToString(gridMusica.Rows[i].Cells["duracion"].Value);
+                    li.hasta = Convert.ToString(curGrid.Rows[i].Cells["duracion"].Value);
                     li.esperar = 0;
                     lim.Nuevo(li);
                     TreeNode sel = GetNodeById(tvListas.Nodes, frmtc.id);
@@ -1995,17 +2039,26 @@ namespace biodanza
                     }
                 }
             }
+            else if (text == "Editar")
+            {
+                Cancion song = new Cancion(curGrid.Rows[i]);
+                song.ShowDialog();
+                LoadGridMusica();
+                gridMusica.Rows[i].Selected = true;
+                gridMusica.FirstDisplayedScrollingRowIndex = Math.Max(0,gridMusica.SelectedRows[0].Index-gridMusica.DisplayedRowCount(true) / 2);
+
+            }
             else if (text == "Propiedades")
             {
-                //string file = Path.Combine(gridMusica.Rows[i].Cells["localizacion"].Value.ToString(), gridMusica.Rows[i].Cells["Titulo"].Value.ToString());
-                string file = gridMusica.Rows[i].Cells["localizacion"].Value.ToString();
+                string file = Path.Combine(curGrid.Rows[i].Cells["localizacion"].Value.ToString(), curGrid.Rows[i].Cells["Titulo"].Value.ToString());
+                //string file = Path.Combine(curGrid.Rows[i].Cells["localizacion"].Value.ToString();
                 ShowFileProperties(file);
 
             }
             else if (text == "Idioma")
             {
-                Int32 j = gridMusica.SelectedCells[0].RowIndex;
-                string texto = gridMusica.Rows[j].Cells["titulo"].Value.ToString();
+                Int32 j = curGrid.SelectedCells[0].RowIndex;
+                string texto = curGrid.Rows[j].Cells["titulo"].Value.ToString();
                 texto = texto.Substring(0, texto.Trim().Length);
 
                 Translator t = new Translator();
@@ -2013,9 +2066,9 @@ namespace biodanza
             }
             else if (text == "Buscar letra")
             {
-                Int32 j = gridMusica.SelectedCells[0].RowIndex;
-                string texto = gridMusica.Rows[j].Cells["titulo"].Value.ToString();
-                texto = texto.Substring(0, texto.Trim().Length);
+                Int32 j = curGrid.SelectedCells[0].RowIndex;
+                string texto = curGrid.Rows[j].Cells["titulo"].Value.ToString();
+                texto = texto.Substring(0, texto.Trim().Length).Replace(".mp3", "").Replace("\"", "");
 
                 Translator t = new Translator();
                 t.Language(texto);
@@ -2029,7 +2082,8 @@ namespace biodanza
             {
 
                 Int32 j = curGrid.SelectedCells[0].RowIndex;
-                string file = curGrid.Rows[j].Cells["localizacion"].Value.ToString();
+                //string file = curGrid.Rows[j].Cells["localizacion"].Value.ToString();
+                string file = Path.Combine(curGrid.Rows[i].Cells["localizacion"].Value.ToString(), curGrid.Rows[i].Cells["Titulo"].Value.ToString());
                 string textoCancion = Clipboard.GetText();
                 if (MessageBox.Show("¿Deseas añadir esta letra al fichero?" + Environment.NewLine + Environment.NewLine + textoCancion, "Atención", MessageBoxButtons.YesNo) == DialogResult.Yes)
                 {
@@ -2038,7 +2092,7 @@ namespace biodanza
                     file = file.Replace('\n', ' ');
                     try
                     {
-                        id3 = TagLib.File.Create(file.Replace(@"file:///",""));
+                        id3 = TagLib.File.Create(file.Replace(@"file:///", ""));
                     }
                     catch (Exception ex)
                     {
@@ -2046,7 +2100,7 @@ namespace biodanza
                         return;
                     }
                     id3.Tag.Lyrics = textoCancion;
-                    
+
                     try { id3.Save(); }
                     catch { MessageBox.Show("Probablemente esté en uso. Prueba más tarde"); }
 
@@ -2087,7 +2141,7 @@ namespace biodanza
                 Int32 id_carpetalista = Convert.ToInt32(curGrid.Rows[j].Cells["id_carpetalista"].Value);
                 ListaItemsMng lim = new ListaItemsMng();
                 lim.Filter("id=" + id.ToString());
-                
+
                 Int32 idItem = Convert.ToInt32(lim.dv[0]["id_item"]);
                 FrmEditClassSong frmECS = new FrmEditClassSong();
                 frmECS.id = id;
@@ -2097,7 +2151,7 @@ namespace biodanza
                 {
                     LoadGridItems(id_carpetalista);
                 }
-                gridItems.Rows[j].Selected = true;
+                gridItemsClase.Rows[j].Selected = true;
 
 
             }
@@ -2110,7 +2164,7 @@ namespace biodanza
 
                 string titulo = curGrid.Rows[j].Cells["titulo"].Value.ToString();
 
-                if (curGrid == gridItems)
+                if (curGrid == gridItemsClase)
                 {
                     FrmSortItems fsi = new FrmSortItems();
                     fsi.LoadCarpetaLista(id_carpetalista, j);
@@ -2133,11 +2187,12 @@ namespace biodanza
             else if (text == "Ver letra")
             {
 
-                Int32 j = gridMusica.SelectedCells[0].RowIndex;
+                Int32 j = curGrid.SelectedCells[0].RowIndex;
 
                 //Uri uriAddress = new Uri(curGrid.Rows[i].Cells["localizacion"].Value.ToString());
                 //string file = uriAddress.ToString().Replace(@"file:///", "");
-                string file = curGrid.Rows[i].Cells["localizacion"].Value.ToString();
+                //string file = curGrid.Rows[i].Cells["localizacion"].Value.ToString();
+                string file = Path.Combine(curGrid.Rows[i].Cells["localizacion"].Value.ToString(), curGrid.Rows[i].Cells["Titulo"].Value.ToString());
 
                 TagLib.File y = null;
                 var id3 = y;
@@ -2158,8 +2213,8 @@ namespace biodanza
             }
             else if (text == "Traducir letra")
             {
-                Int32 j = gridMusica.SelectedCells[0].RowIndex;
-                string file = gridMusica.Rows[j].Cells["localizacion"].Value.ToString();
+                Int32 j = curGrid.SelectedCells[0].RowIndex;
+                string file = curGrid.Rows[j].Cells["localizacion"].Value.ToString();
                 TagLib.File y = null;
                 var id3 = y;
                 id3 = TagLib.File.Create(file);
@@ -2173,8 +2228,8 @@ namespace biodanza
             }
             else if (text == "Buscar video")
             {
-                Int32 j = gridMusica.SelectedCells[0].RowIndex;
-                string texto = gridMusica.Rows[j].Cells["titulo"].Value.ToString();
+                Int32 j = curGrid.SelectedCells[0].RowIndex;
+                string texto = curGrid.Rows[j].Cells["titulo"].Value.ToString();
                 texto = texto.Substring(0, texto.Length - 4);
 
                 String searchRequest = "video canción \"" + texto + "\"";
@@ -2185,16 +2240,16 @@ namespace biodanza
             else if (text == "Pantalla completa")
             {
                 visorvideo vv = new visorvideo();
-                Int32 j = gridMusica.SelectedCells[0].RowIndex;
-                string file = gridMusica.Rows[j].Cells["localizacion"].Value.ToString();
-                vv.axWindowsMediaPlayer1.URL =  file;
+                Int32 j = curGrid.SelectedCells[0].RowIndex;
+                string file = curGrid.Rows[j].Cells["localizacion"].Value.ToString();
+                vv.axWindowsMediaPlayer1.URL = file;
                 vv.axWindowsMediaPlayer1.windowlessVideo = true;
                 vv.ShowDialog();
             }
             else if (text == "Copiar")
             {
-                Int32 j = gridMusica.SelectedCells[0].RowIndex;
-                string cancion = gridMusica.Rows[j].Cells["Titulo"].Value.ToString();
+                Int32 j = curGrid.SelectedCells[0].RowIndex;
+                string cancion = curGrid.Rows[j].Cells["Titulo"].Value.ToString();
                 //cancion = cancion.Substring(0, cancion.Length - 4);
 
                 //textBoxSearch.Copy();
@@ -2324,7 +2379,7 @@ namespace biodanza
         private void button3_Click(object sender, EventArgs e)
         {
             string s = string.Empty;
-            foreach (DataGridViewColumn c in gridItems.Columns)
+            foreach (DataGridViewColumn c in gridItemsClase.Columns)
             {
                 s += c.HeaderText+ "-" + c.Width.ToString() + Environment.NewLine;
             }
@@ -2383,7 +2438,10 @@ namespace biodanza
         {
             if (th1 != null)
             {
-                th1.Suspend();
+                if (th1.IsAlive)
+                {
+                    th1.Suspend();
+                }
             }
         }
 
